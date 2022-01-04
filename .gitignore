@@ -1,2 +1,5 @@
 # config files
 .env
+
+# compiled files
+main

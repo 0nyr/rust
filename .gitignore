@@ -3,3 +3,9 @@
 
 # compiled files
 main
+*.bin
+*.o
+
+# compiled crates
+*.lock
+target

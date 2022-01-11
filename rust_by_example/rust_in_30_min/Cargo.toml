@@ -1,0 +1,8 @@
+[package]
+name = "rust_in_30_minutes"
+version = "0.1.0"
+authors = ["onyr <rascoussier.florian@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+rand = "0.8"

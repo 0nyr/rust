@@ -175,6 +175,7 @@ fn main() {
     println!("destructured _x: {:?}", _x);
 
     // let patterns can be used as conditions in if
+    #[derive(Debug)]
     struct Number {
         odd: bool,
         value: i32,
@@ -220,7 +221,39 @@ fn main() {
         fn is_strictly_negative(self) -> bool;
     }
 
+    // impl can be used to implement traits
+    impl Signed for Number {
+        fn is_strictly_negative(self) -> bool {
+            self.value < 0
+        }
+    }
+    let five = Number { odd: false, value: 5 };
+    println!("negative? {}", five.is_strictly_negative());
 
+    // we can also implement traits on foreign types
+    // en even on primitive types !!!
+    impl Signed for i32 {
+        fn is_strictly_negative(self) -> bool {
+            self < 0
+        }
+    }
+    let x: i32 = -44;
+    println!("primitive type negative? {}", x.is_strictly_negative());
+
+    // adding a foreign trait to our own struct/type
+    impl std::ops::Neg for Number {
+        type Output = Number;
+    
+        fn neg(self) -> Number {
+            Number {
+                value: -self.value,
+                odd: self.odd,
+            }        
+        }
+    }
+    let six = Number { odd: false, value: 6 };
+    let neg_six = -six;
+    println!("neg_six: {:?}", neg_six);
 
 
     // MUTABILITY

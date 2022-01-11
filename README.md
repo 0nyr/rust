@@ -14,7 +14,7 @@
 
 [Rust by example](https://doc.rust-lang.org/stable/rust-by-example/index.html)
 
-### wasm
+##### wasm
 
 [wasm-bingen lib/cli | official](https://rustwasm.github.io/docs/wasm-bindgen/#introduction)
 
@@ -22,13 +22,15 @@
 
 [wasm-pack doc | official](https://rustwasm.github.io/wasm-pack/book/introduction.html)
 
-### tools
+##### tools
 
 [cargo-generate | GitHub](https://github.com/ashleygwilliams/cargo-generate)
 
-### Useful tuto
+##### tuto
 
 [Rust for Javascripters | Coding Tech Youtube](https://youtu.be/ohuTy8MmbLc)
+
+[learn Rust 30 minutes a day](https://fasterthanli.me/articles/a-half-hour-to-learn-rust) - good entry or refresh point
 
 ##### server in Rust
 
@@ -44,9 +46,10 @@
 
 ##### wasm
 
-[debuggiong Rust-generated WASM | official](https://rustwasm.github.io/docs/wasm-bindgen/#introduction)
+[debugging Rust-generated WASM | official](https://rustwasm.github.io/docs/wasm-bindgen/#introduction)
 
-### TODO
+
+## TODO
 
 ##### the book
 
@@ -56,6 +59,10 @@
 
 * [ ] [1.2.2.1 Testcase liste | official](https://doc.rust-lang.org/stable/rust-by-example/hello/print/print_display/testcase_list.html)
 
+##### rust 30 min a day
+
+* [ ] An `impl` block is always *for* a type, so, inside that block...
+
 ##### rust & wasm
 
 project : `./wasm/wasm-game-of-life/`
@@ -64,7 +71,8 @@ project : `./wasm/wasm-game-of-life/`
 * [X] [4.5 GoL Testing Life](https://rustwasm.github.io/docs/book/game-of-life/testing.html)
 * [ ] [4.8 GoL Time Profiling](https://rustwasm.github.io/docs/book/game-of-life/time-profiling.html) stopped there. Good place to go for harsh optimisation. Not a priority.
 
-### General commands
+
+## commands
 
 `rustup update` : update rust
 
@@ -94,3 +102,8 @@ project : `./wasm/wasm-game-of-life/`
  ❮ onyr ★  kenzae❯ ❮ rust❯❯ rustc --version
 rustc 1.48.0 (7eac88abb 2020-11-16)
 ```
+
+
+## Installation
+
+Installing `rust` and `rustup`, the package and language manager is trivial. Follow instructions [here](https://www.rust-lang.org/tools/install). It's basically a one liner that does all the job.

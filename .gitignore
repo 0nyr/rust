@@ -9,3 +9,6 @@ main
 # compiled crates
 *.lock
 target
+
+# build files
+build/

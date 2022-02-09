@@ -8,3 +8,13 @@ pub fn function() {
 fn private_function() {
     println!("called `my::nested::private_function()`");
 }
+
+ // this macro is public
+#[macro_export]
+macro_rules! my_macro {
+    ($text:expr) => {
+        format!("called `my::nested::my_macro!({})`", $text)
+    }
+}
+
+

@@ -4,10 +4,15 @@
 // and `inaccessible.rs` files and insert them here under their respective
 // modules
 mod inaccessible; // import inaccessible.rs
-pub mod nested;
+#[macro_use] pub mod nested; // import nested.rs with macros
 
 pub fn function() {
-    println!("called `my::function()`");
+    // double nested macro
+    // use my_macro!("hello") to call my_macro!
+    println!(
+        "{}", // WARN: Don't forget the string formatting
+        my_macro!("called `my::function()`")
+    );
 }
 
 fn private_function() {

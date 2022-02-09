@@ -4,7 +4,7 @@ mod my;
 mod client;
 
 fn function() {
-    println!("called `function() fn from main.rs`");
+    println!("called `function() [main.rs]`");
 }
 
 fn main() {

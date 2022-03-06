@@ -1,10 +1,15 @@
 use std::net::{TcpStream};
 use std::io::{Read, Write};
 use std::str::from_utf8;
+use ansi_term::{Color, Style};
+
+
 
 fn get_user_message() -> String {
     println!();
-    println!("Enter a message to send to the server:");
+    println!("{}", ansi_term::Color::Blue.paint(
+        "Enter a message to send to the server:"
+    ));
     
     let mut user_message = String::new();
     std::io::stdin().read_line(&mut user_message).unwrap();
@@ -17,7 +22,9 @@ fn main() {
     match TcpStream::connect("localhost:3333") {
         // case 1: connection succeeded
         Ok(mut stream) => {
-            println!("Successfully connected to server in port 3333");
+            println!("{}", ansi_term::Color::Blue.paint(
+                "Successfully connected to server in port 3333"
+            ));
 
             // get the message from the user
             let mut message;

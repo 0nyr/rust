@@ -145,7 +145,7 @@ fn main() {
 
 
 
-    // STRUCTS
+    // STRUCTS & TRAITS
     // structs are a way to group data together
     // structs are also used to define a new type
 
@@ -265,5 +265,8 @@ fn main() {
     };
     n.value = 19; // reassigned, all good
 
+
+
+    // 
 
 }

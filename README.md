@@ -48,7 +48,6 @@
 
 [debugging Rust-generated WASM | official](https://rustwasm.github.io/docs/wasm-bindgen/#introduction)
 
-
 ## TODO
 
 ##### the book
@@ -61,7 +60,7 @@
 
 ##### rust 30 min a day
 
-* [ ] An `impl` block is always *for* a type, so, inside that block...
+* [ ] An `impl` block is always *for* a type, so, inside that block
 
 ##### rust & wasm
 
@@ -70,7 +69,6 @@ project : `./wasm/wasm-game-of-life/`
 * [X] [4.4 Game of Live WASM](https://rustwasm.github.io/docs/book/game-of-life/implementing.html#rust-implementation)
 * [X] [4.5 GoL Testing Life](https://rustwasm.github.io/docs/book/game-of-life/testing.html)
 * [ ] [4.8 GoL Time Profiling](https://rustwasm.github.io/docs/book/game-of-life/time-profiling.html) stopped there. Good place to go for harsh optimisation. Not a priority.
-
 
 ## commands
 
@@ -102,7 +100,6 @@ project : `./wasm/wasm-game-of-life/`
  ❮ onyr ★  kenzae❯ ❮ rust❯❯ rustc --version
 rustc 1.48.0 (7eac88abb 2020-11-16)
 ```
-
 
 ## Installation
 

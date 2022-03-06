@@ -37,12 +37,18 @@ fn main() {
 
                 // exit cases
                 if message == "exit" || message == "quit" {
-                    print!("Exiting...");
+                    print!("{}", ansi_term::Color::Orange.paint(
+                        "Exiting..."
+                    ));
                     break;
                 }
 
                 // send the message to the server
-                println!("Sent following message: {} [nb of chars: {}]", message, message.len());
+                // TODO: color that
+                println!(
+                    "Sent following message: {} [nb of chars: {}]", 
+                    message, message.len()
+                );
                 stream.write(message.as_bytes()).unwrap();
 
                 // read the message from the server
@@ -51,18 +57,26 @@ fn main() {
                     // case 1: read succeeded
                     Ok(size) => {
                         let text = from_utf8(&data[0..size]).unwrap();
-                        println!("Server replied with: {}", text);
+                        println!("{}", ansi_term::Color::Yellow.paint(
+                            "Server replied with: {}", text
+                        ));
 
                         // check if the echo server replied correctly
                         if text == message {
-                            println!("Reply is ok!");
+                            println!("{}", ansi_term::Color::Green.paint(
+                                "Reply is ok!"
+                        ));
                         } else {
-                            println!("Unexpected reply!");
+                            println!("{}", ansi_term::Color::Red.paint(
+                                "Unexpected reply!"
+                        ));
                         }
                     },
                     // case 2: read failed
                     Err(e) => {
-                        println!("Failed to receive data: {}", e);
+                        println!("{}", ansi_term::Color::Red.paint(
+                            "Failed to receive data: {}", e
+                        ));
                     }
                 }
             }
@@ -70,8 +84,12 @@ fn main() {
 
         // case 2: connection failed
         Err(e) => {
-            println!("Failed to connect: {}", e);
+            println!("{}", ansi_term::Color::Red.paint(
+                "Failed to connect: {}", e
+            ));
         }
     }
-    println!("Terminated.");
+    println!("{}", ansi_term::Color::Yellow.paint(
+        "Terminated."
+    ));
 }

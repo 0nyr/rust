@@ -1,6 +1,7 @@
 use std::thread;
 use std::net::{TcpListener, TcpStream, Shutdown};
 use std::io::{Read, Write};
+use ansi_term::{Color};
 
 fn handle_client(mut stream: TcpStream) {
     let mut data = [0 as u8; 50]; // using 50 byte buffer
@@ -11,10 +12,12 @@ fn handle_client(mut stream: TcpStream) {
             true
         },
         Err(_) => {
-            println!(
-                "An error occurred, terminating connection with {}", 
-                stream.peer_addr().unwrap()
-            );
+            println!("{}", Color::Red.paint(
+                format!(
+                    "An error occurred, terminating connection with {}", 
+                    stream.peer_addr().unwrap()
+                )
+            ));
             stream.shutdown(Shutdown::Both).unwrap();
             false
         }
@@ -24,14 +27,18 @@ fn handle_client(mut stream: TcpStream) {
 fn main() {
     let listener = TcpListener::bind("0.0.0.0:3333").unwrap();
     // accept connections and process them
-    println!("Server listening on port 3333");
+    println!("{}", Color::Yellow.paint(
+        "Server listening on port 3333"
+    ));
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
-                println!(
-                    "New connection: {}", 
-                    stream.peer_addr().unwrap()
-                );
+                println!("{}", Color::Green.paint(
+                    format!(
+                        "New connection: {}", 
+                        stream.peer_addr().unwrap()
+                    )
+                ));
                 // spawn a new thread for each connection
                 thread::spawn(move|| {
                     // connection succeeded
@@ -39,8 +46,10 @@ fn main() {
                 });
             }
             Err(e) => {
-                println!("Error: {}", e);
                 /* connection failed */
+                println!("{}", Color::Red.paint(
+                    format!("Error: {}", e)
+                ));
             }
         }
     }

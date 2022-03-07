@@ -104,3 +104,7 @@ rustc 1.48.0 (7eac88abb 2020-11-16)
 ## Installation
 
 Installing `rust` and `rustup`, the package and language manager is trivial. Follow instructions [here](https://www.rust-lang.org/tools/install). It's basically a one liner that does all the job.
+
+## VSCode
+
+Use a `rust-toolchain` file to specify `stable` or `nightly` rust toolchain to be used by VSCode and Rust. More info [here | StackOverflow](https://stackoverflow.com/questions/58226545/how-to-switch-between-rust-toolchains).

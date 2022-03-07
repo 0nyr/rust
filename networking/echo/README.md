@@ -62,3 +62,9 @@ New connection: 127.0.0.1:58312
 New connection: 127.0.0.1:58348
 New connection: 127.0.0.1:58354
 ```
+
+## Colors
+
+[ansi_term crate](https://docs.rs/ansi_term/latest/ansi_term/)
+
+[std::fmt formatting crate](https://doc.rust-lang.org/std/fmt/)

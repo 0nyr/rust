@@ -18,3 +18,26 @@ Launching the program...
 initial counter: Counter { last_value: 100, updating_threads: [] }
 Counter { last_value: 400, updating_threads: [0, 0, 0, 0, 1, 1, 1, 2, 0, 2, 1, 2, 2, 1, 2, 0, 1, 2, 0, 0, 2, 1, 2, 1, 2, 2, 0, 0, 1, 1] }
 ```
+
+Comme on peut le voir, relancer le programme donnera des résultats différents, en fonction de la chance des threads:
+
+```shell
+(base) onyr@aezyr:~/Documents/code/rust/concurrency/concurrent_vect_use$ cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/concurrent_vect_use`
+Launching the program...
+initial counter: Counter { last_value: 100, updating_threads: [] }
+Counter { last_value: 400, updating_threads: [0, 0, 0, 0, 1, 1, 1, 2, 0, 2, 1, 2, 2, 1, 2, 0, 1, 2, 0, 0, 2, 1, 2, 1, 2, 2, 0, 0, 1, 1] }
+(base) onyr@aezyr:~/Documents/code/rust/concurrency/concurrent_vect_use$ cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/concurrent_vect_use`
+Launching the program...
+initial counter: Counter { last_value: 100, updating_threads: [] }
+Counter { last_value: 400, updating_threads: [1, 1, 0, 0, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 2, 0, 1, 0, 2, 2, 2, 1, 2, 2, 2, 0, 0, 1, 1, 1] }
+(base) onyr@aezyr:~/Documents/code/rust/concurrency/concurrent_vect_use$ cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.00s
+     Running `target/debug/concurrent_vect_use`
+Launching the program...
+initial counter: Counter { last_value: 100, updating_threads: [] }
+Counter { last_value: 400, updating_threads: [1, 1, 2, 1, 2, 2, 2, 0, 0, 0, 2, 1, 2, 0, 1, 1, 1, 2, 2, 0, 1, 2, 0, 0, 1, 2, 0, 0, 0, 1] }
+```

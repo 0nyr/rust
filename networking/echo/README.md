@@ -1,10 +1,16 @@
 # Echo server
 
+### Useful links
+
 [std::net | rust](https://doc.rust-lang.org/std/net/index.html)
+
+[ANSI terminal | Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/cli/ansi_terminal.html)
 
 ##### examples
 
 Code obtained there: [echo server in rust](https://riptutorial.com/rust/example/4404/a-simple-tcp-client-and-server-application--echo)
+
+## Notes
 
 ### commands
 

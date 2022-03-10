@@ -21,7 +21,7 @@ impl Counter {
     }
 
     pub fn add(&mut self, new_value: u32, updating_thread: ThreadId) {
-        self.last_value = new_value;
+        self.last_value += new_value;
         self.updating_threads.push(updating_thread);
     }
 
@@ -40,18 +40,13 @@ fn main() {
     ));
 
     // create a new counter
-    let mut counter = Counter {
-        last_value: 0,
+    let counter = Counter {
+        last_value: 100,
         updating_threads: Vec::new(),
     };
-
-    // init the counter with some values
-    counter.add(100);
     println!("{}", Color::Yellow.paint(
         format!("initial counter: {:?}", counter)
     ));
-
-    let mut handles = vec![];
 
     // since we will be concurrently accessing the counter, 
     // we need to wrap it in an Arc<Mutex> so as to be
@@ -63,7 +58,9 @@ fn main() {
     //  reads/writes. It is not thread safe.
     let data = Arc::new(Mutex::new(counter));
 
-    for _ in 0..3 {
+    let mut handles = vec![];
+
+    for i in 0..3 {
         // create a copy of the Arc pointer
         // for each thread, since we will be moving
         // the ownership of the copy of the Arc pointer
@@ -74,7 +71,7 @@ fn main() {
         // use closure to pass (move) the ownership 
         // of the Arc pointer to the new thread
         let handle = std::thread::spawn(move || {
-            thread_operation(data_copy)
+            thread_operation(data_copy, i)
         });
         handles.push(handle);
     }
@@ -87,26 +84,35 @@ fn main() {
 }
 
 // -> std::thread::JoinHandle<()>
-fn thread_operation(data: Arc<Mutex<Counter>>) {
+// concurrently update the counter by solving a random problem
+fn thread_operation(data: Arc<Mutex<Counter>>, thread_id: ThreadId) {
+    // keep ownership of the Arc pointer
+    // so pass it by borrowing
+
     for _ in 0..10 {
-        // keep ownership of the data
-        // pass it by reference (borrow)
-        update_counter(&data);
+        let mut rng = rand::thread_rng(); // get the seed from the OS
+        let last_value = get_locked_last_value(&data);
+        let current_max = last_value + 10;
+    
+        // generate a random number between the last value and the current max
+        loop {
+            let value: u32 = rng.gen_range(0..current_max);
+            if value > last_value {
+                // use lock at this scope to update the counter
+                update_counter(&data, thread_id);
+                break;
+            }
+        }
     }
 }
 
-// concurrently update the counter by solving a random problem
-fn update_counter(data: &Arc<Mutex<Counter>>) {
-    let mut counter = (*data).lock().unwrap();
-    let mut rng = rand::thread_rng(); // get the seed from the OS
-    let current_max = counter.get_last() + 10;
+// use lock in separate score to avoid deadlock
+fn get_locked_last_value(data: &Arc<Mutex<Counter>>) -> u32 {
+    let counter = (*data).lock().unwrap();
+    counter.get_last()
+}
 
-    // generate a random number between the last value and the current max
-    loop {
-        let value: u32 = rng.gen_range(0..current_max);
-        if value > counter.last_value {
-            counter.add(value);
-            break;
-        }
-    }
+fn update_counter(data: &Arc<Mutex<Counter>>, thread_id: ThreadId) {
+    let mut guarder_counter = (*data).lock().unwrap();
+    guarder_counter.add(10, thread_id);
 }

@@ -108,3 +108,5 @@ Installing `rust` and `rustup`, the package and language manager is trivial. Fol
 ## VSCode
 
 Use a `rust-toolchain` file to specify `stable` or `nightly` rust toolchain to be used by VSCode and Rust. More info [here | StackOverflow](https://stackoverflow.com/questions/58226545/how-to-switch-between-rust-toolchains).
+
+You can also set VSCode user settings for using stable, [read this | GitHub issue](https://github.com/rust-lang/vscode-rust/issues/237#issuecomment-359639894).

@@ -7,7 +7,6 @@ main
 *.o
 
 # compiled crates
-*.lock
 target
 
 # build files
